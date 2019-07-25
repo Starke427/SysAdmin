@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Simplifies the management of predefined services. This is extremely helpful for systems with multiple, critical services.
+# Services are defined in the first declare array.
+# 
+
 declare -a arr=("SERVICE1" "SERVICE2" "SERVICE3")
 
 PS3='
