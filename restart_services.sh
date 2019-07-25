@@ -47,7 +47,7 @@ do
         "Status")
             for i in "${arr[@]}"; do
                 echo "Checking status for $i..."
-                sudo systemctl status "$i"
+                sudo systemctl status "$i" | grep Active
             done
             break
             ;;
