@@ -1,0 +1,20 @@
+# Enable PowerShell Remoting
+Enable-PSRemoting -SkipNetworkProfileCheck -force
+
+# Allow connections by adding hosts to the trusted hosts file, here we will allow any(*)
+Set-Item wsman:/localhost/client/trustedhosts *
+
+# Restart WinRM
+Restart-Service WinRM
+
+# Test your connection, no errors is good
+Test-WsMan <ip>
+
+# Initiate an interactive session
+New-PSSession -ComputerName COMPUTER -Credential USERNAME
+
+# End an interactive session
+Exit-PSSession
+
+# Execute a remote command, supposedly
+Invoke-Command -ComputerName COMPUTER -ScriptBlock { COMMAND } -credential USERNAME
