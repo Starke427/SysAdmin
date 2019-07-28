@@ -10,11 +10,31 @@ Restart-Service WinRM
 # Test your connection, no errors is good
 Test-WsMan <ip>
 
+
+
+
 # Initiate an interactive session
-New-PSSession -ComputerName COMPUTER -Credential USERNAME
+Enter-PSSession -ComputerName COMPUTER -Credential USERNAME
 
 # End an interactive session
 Exit-PSSession
 
-# Execute a remote command, supposedly
-Invoke-Command -ComputerName COMPUTER -ScriptBlock { COMMAND } -credential USERNAME
+
+
+# Initiate a persistent session
+New-PSSession -ComputerName COMPUTER -Credential USERNAME
+
+# Check persistent sessions
+Get-PSSession
+
+# Remove a persistent session
+Remove-PSSession -id ID
+
+
+# Run a script on a remote server
+Invoke-Command -FilePath c:\scripts\test.ps1 -ComputerName Server01
+
+# Run a command on multiple remote servers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Invoke-Command -ComputerName server01, server02 -Credential domain01\user01 -ScriptBlock {PS_COMMAND}
+
+
