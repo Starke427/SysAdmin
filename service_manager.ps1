@@ -17,42 +17,31 @@ if ($Action -eq 'Stop')
 {
   Foreach ($service in $serviceList)
   {
-
     $S = Get-Service -Name $service
     Set-Service -InputObject $S -Status Stopped
-
   }
 }
 elseif ($Action -eq 'Start')
 {
   Foreach ($service in $serviceList)
   {
-
     Set-Service -Name $service -Status Running -PassThru
-
-
   }
 }
 elseif ($Action -eq 'Disable')
 {
   Foreach ($service in $serviceList)
   {
-
     Set-Service -Name $service -StartupType Manual
     Get-Service $service | Select-Object -Property Name, StartType, Status
-
-
   }
 }
 elseif ($Action -eq 'Enable')
 {
   Foreach ($service in $serviceList)
   {
-
     Set-Service -Name $service -StartupType Automatic
     Get-Service $service | Select-Object -Property Name, StartType, Status
-
-
   }
 }
 else
